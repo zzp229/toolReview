@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tool1.ViewModels;
 
 namespace Tool1
 {
@@ -16,9 +17,11 @@ namespace Tool1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
+
+            this.DataContext = mainWindowViewModel;
         }
     }
 }
