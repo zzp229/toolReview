@@ -1,0 +1,24 @@
+﻿<Window x:Class="导航2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:导航2"
+        xmlns:views="clr-namespace:导航2.Views"
+        xmlns:vm="clr-namespace:导航2.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800">
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <!--这个指定绑定好ViewModel了，好牛啊-->
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <views:Login/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                <views:Home/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
+</Window>
