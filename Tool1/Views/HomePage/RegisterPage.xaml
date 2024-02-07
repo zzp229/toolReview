@@ -36,19 +36,34 @@
         </StackPanel>
         
         <!--第二栏-->
-        <StackPanel Grid.Column="1" Orientation="Vertical" 
-                    Margin="50 0 0 0">
-            <ItemsControl ItemsSource="{Binding Studies}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" FontSize="25" Content="{Binding id}"
-                                Margin="30 0 0 0"/>
-                            <TextBox Grid.Column="1" Width="200" Height="20" Background="AliceBlue" Text="{Binding set}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Visible">
+            <StackPanel Orientation="Vertical" 
+            Margin="50 0 0 0">
+                <ItemsControl ItemsSource="{Binding Studies}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Grid.Column="0" Width="30" FontSize="25" Text="{Binding id}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    Margin="30 0 0 0" TextAlignment="Center"/>
+                                <!--默认是单项绑定，双向绑定需要自己实现-->
+                                <TextBox Grid.Column="1" Width="200" Height="20" Background="AliceBlue" Text="{Binding content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="55"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!--第三栏-->
+        <StackPanel Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="Purple">
+            <Button Content="保存" Padding="30, 10" Command="{Binding saveCommand}">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                        <GradientStop Color="Orange" Offset="0"/>
+                        <GradientStop Color="Cyan" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

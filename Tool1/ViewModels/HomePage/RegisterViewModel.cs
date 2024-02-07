@@ -4,6 +4,8 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,10 @@ namespace Tool1.ViewModels.HomePage
     public partial class RegisterViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private ObservableCollection<study> studies = new ObservableCollection<study>();
+        private BindingList<study> studies = new BindingList<study>();
+        //private ObservableCollection<study> studies = new ObservableCollection<study>();
+
+        private int count = 1;
 
         public RegisterViewModel()
         {
@@ -26,10 +31,11 @@ namespace Tool1.ViewModels.HomePage
         private void initData()
         {
             studies.Clear();
+            count = 1;
             studies.Add(new study()
             {
                 id = 1,
-                content = "可以就可以",
+                content = "",
             });
         }
 
@@ -40,10 +46,22 @@ namespace Tool1.ViewModels.HomePage
         {
             studies.Add(new study()
             {
-                id = 1,
-                content = "可以就可以",
+                id = ++count,
+                content = "",
             });
         }
 
+
+        // 保存
+        [RelayCommand]
+        private void save()
+        {
+            foreach (var study in studies)
+            {
+                Debug.WriteLine(study.id);
+                Debug.WriteLine(study.content);
+            }
+
+        }
     }
 }
